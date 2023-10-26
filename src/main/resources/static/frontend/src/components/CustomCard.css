@@ -1,0 +1,19 @@
+.card {
+    margin: 10px 0;
+    border-color: #333;
+}
+
+
+
+.card-title {
+    color: #333;
+}
+
+.card-text {
+    color: #666;
+}
+
+.card-img-top{
+    height: 25vh;
+    object-fit:cover;
+}
