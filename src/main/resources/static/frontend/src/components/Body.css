@@ -1,0 +1,7 @@
+.body {
+  flex-grow: 1;
+  width: 100%;
+  height: auto;
+  background-color: #ff8057;
+  padding-top: 50px;
+}
