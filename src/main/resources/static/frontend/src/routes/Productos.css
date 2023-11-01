@@ -1,0 +1,11 @@
+.productos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* esto asegura que el contenedor ocupe toda la altura de la ventana del navegador */
+  }
+  
+  .titulo-productos {
+    font-size: 3em;
+    font-family: Arial, sans-serif;
+  }

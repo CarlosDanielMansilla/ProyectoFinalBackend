@@ -1,0 +1,33 @@
+.search-bar {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 10px;
+    width: auto;
+    height: 60vh;
+    padding: 0;
+}
+
+.search-bar .form-group {
+  flex-basis: 20%;
+  min-width: 100px;
+  margin: 10px 0;
+}
+
+
+
+.search-bar button {
+    flex-basis: 10%;
+    min-width: 100px;
+    margin: 15px 0; 
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+.search-button {
+    font-size: 1rem;
+    height: 40px;
+    width: auto;
+    padding: 0 15px;
+}

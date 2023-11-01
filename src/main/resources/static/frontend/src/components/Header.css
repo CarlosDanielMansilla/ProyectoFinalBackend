@@ -1,10 +1,23 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Work+Sans:wght@100;300;600&display=swap');
+
+
 .header {
   width: 100%;
-  background-color: #E0E0E0;
+  background-color: #FFFFFF;
 }
 .logo-container {
   display: flex;
   align-items: center;
+}
+
+.logo-text {
+  font-family: 'Tenor Sans';
+  font-size: 15px; 
+  font-weight: bold;
+  color: #228B22; 
+  margin-left: 10px;
 }
 
 .buttons-container {
@@ -12,7 +25,21 @@
   justify-content: flex-end;
 }
 
-.sign-up-button {
-  margin-right: 10px; 
+.btn-primary.--bs-orange{
+  margin-left: 10px; 
 }
 
+
+.links-container {
+  display: flex;
+  margin-right: 500px;
+}
+.fixed-height {
+  height: 40px;  
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.btn {
+  height: 35px;  
+}

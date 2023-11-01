@@ -2,6 +2,8 @@ package com.ProyectoIntegradorFinal.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "MotorHome")
 public class MotorHome {
@@ -10,21 +12,23 @@ public class MotorHome {
     private Long id;
     private String marca;
     private String modelo;
-    private int añoFabricacion;
+    @Column(name = "anioFabricacion")
+    private int anioFabricacion;
     private String descripcion;
     private double precioAlquiler;
-    private byte [] imagen;
+
+    private String file;
 
     public MotorHome() {
     }
 
-    public MotorHome(String marca, String modelo, int añoFabricacion, String descripcion, double precioAlquiler, byte[] imagen) {
+    public MotorHome(String marca, String modelo, int anioFabricacion, String descripcion, double precioAlquiler, String file) {
         this.marca = marca;
         this.modelo = modelo;
-        this.añoFabricacion = añoFabricacion;
+        this.anioFabricacion = anioFabricacion;
         this.descripcion = descripcion;
         this.precioAlquiler = precioAlquiler;
-        this.imagen = imagen;
+        this.file = file;
     }
 
     public Long getId() {
@@ -47,12 +51,12 @@ public class MotorHome {
         this.modelo = modelo;
     }
 
-    public int getAñoFabricacion() {
-        return añoFabricacion;
+    public int getAnioFabricacion() {
+        return anioFabricacion;
     }
 
-    public void setAñoFabricacion(int añoFabricacion) {
-        this.añoFabricacion = añoFabricacion;
+    public void setAnioFabricacion(int anioFabricacion) {
+        this.anioFabricacion = anioFabricacion;
     }
 
     public String getDescripcion() {
@@ -71,11 +75,11 @@ public class MotorHome {
         this.precioAlquiler = precioAlquiler;
     }
 
-    public byte[] getImagen() {
-        return imagen;
+    public String getFile() {
+        return file;
     }
 
-    public void setImagen(byte[] imagen) {
-        this.imagen = imagen;
+    public void setFile(String file) {
+        this.file = file;
     }
 }

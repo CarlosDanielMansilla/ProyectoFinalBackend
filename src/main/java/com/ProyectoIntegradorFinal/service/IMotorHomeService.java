@@ -2,6 +2,7 @@ package com.ProyectoIntegradorFinal.service;
 
 import com.ProyectoIntegradorFinal.dto.MotorHomeDto;
 import com.ProyectoIntegradorFinal.entity.MotorHome;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface IMotorHomeService {
 
     MotorHomeDto buscarMotorHomePorId(Long id);
 
-    MotorHomeDto registrarMotorHome(MotorHome motorHome);
+    MotorHomeDto registrarMotorHome(MotorHome motorHome, MultipartFile imagenes);
 
     MotorHomeDto actualizarMotorHome(MotorHome motorHome);
 

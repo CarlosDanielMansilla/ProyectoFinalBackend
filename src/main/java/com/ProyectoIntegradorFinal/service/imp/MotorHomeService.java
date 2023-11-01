@@ -9,8 +9,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MotorHomeService implements IMotorHomeService {
@@ -29,7 +33,7 @@ public class MotorHomeService implements IMotorHomeService {
     public List<MotorHomeDto> listarMotorHome() {
         List<MotorHome> motorHomes = motorHomeRepository.findAll();
         List<MotorHomeDto> motorHomesDtos = motorHomes.stream()
-                .map(interno -> objectMapper.convertValue(motorHomes, MotorHomeDto.class)).toList();
+                .map(motorHome -> objectMapper.convertValue(motorHome, MotorHomeDto.class)).toList();
         LOGGER.info("Listado de todos los motorhomes: {}", motorHomesDtos);
         return motorHomesDtos;
     }
@@ -48,8 +52,11 @@ public class MotorHomeService implements IMotorHomeService {
     }
 
     @Override
-    public MotorHomeDto registrarMotorHome(MotorHome motorHome) {
+    public MotorHomeDto registrarMotorHome(MotorHome motorHome, MultipartFile imagenes) {
+
         MotorHome motorHomeReg= motorHomeRepository.save(motorHome);
+
+
         LOGGER.info("MotorHome registrado: {}",motorHomeReg);
         return objectMapper.convertValue(motorHomeReg, MotorHomeDto.class);
     }

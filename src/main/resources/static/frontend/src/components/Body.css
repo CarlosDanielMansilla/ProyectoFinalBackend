@@ -2,6 +2,15 @@
   flex-grow: 1;
   width: 100%;
   height: auto;
-  background-color: #ff8057;
+  background-color: #F2F4F8;
   padding-top: 50px;
+}
+
+.body .container-fluid{
+  padding: 0;
+  background-image: url('../../public/images/fondohome.jpg');
+  background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el formulario */
+  background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
+  /* Otros estilos de fondo como color de fondo, opacidad, etc. */
+  /* Agrega estilos adicionales para el formulario si es necesario */
 }

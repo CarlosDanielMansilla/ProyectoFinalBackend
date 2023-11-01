@@ -1,23 +1,26 @@
 package com.ProyectoIntegradorFinal.dto;
 
+import java.util.List;
+
+
 public class MotorHomeDto {
     private String marca;
     private String modelo;
-    private int añoFabricacion;
+    private int anioFabricacion;
     private String descripcion;
     private double precioAlquiler;
-    private byte [] imagen;
+    private String file;
 
     public MotorHomeDto() {
     }
 
-    public MotorHomeDto(String marca, String modelo, int añoFabricacion, String descripcion, double precioAlquiler, byte[] imagen) {
+    public MotorHomeDto(String marca, String modelo, int anioFabricacion, String descripcion, double precioAlquiler, String file) {
         this.marca = marca;
         this.modelo = modelo;
-        this.añoFabricacion = añoFabricacion;
+        this.anioFabricacion = anioFabricacion;
         this.descripcion = descripcion;
         this.precioAlquiler = precioAlquiler;
-        this.imagen = imagen;
+        this.file = file;
     }
 
     public String getMarca() {
@@ -36,12 +39,12 @@ public class MotorHomeDto {
         this.modelo = modelo;
     }
 
-    public int getAñoFabricacion() {
-        return añoFabricacion;
+    public int getAnioFabricacion() {
+        return anioFabricacion;
     }
 
-    public void setAñoFabricacion(int añoFabricacion) {
-        this.añoFabricacion = añoFabricacion;
+    public void setAnioFabricacion(int anioFabricacion) {
+        this.anioFabricacion = anioFabricacion;
     }
 
     public String getDescripcion() {
@@ -60,11 +63,11 @@ public class MotorHomeDto {
         this.precioAlquiler = precioAlquiler;
     }
 
-    public byte[] getImagen() {
-        return imagen;
+    public String getFile() {
+        return file;
     }
 
-    public void setImagen(byte[] imagen) {
-        this.imagen = imagen;
+    public void setFile(String file) {
+        this.file = file;
     }
 }
