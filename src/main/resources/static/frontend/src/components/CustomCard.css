@@ -1,8 +1,16 @@
-.card {
+.card.custom, .card.customPro {
     margin: 10px 0;
-    border-color: #333;
+    padding: 0;
+    box-shadow: 0 0 15px -5px;
+    transition: 0.3s;
+    animation: ease-in;
 }
 
+.card.custom:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 15px 0;
+    cursor: pointer;
+}
 
 
 .card-title {

@@ -12,17 +12,12 @@ import "./CustomCard.css";
 
 function CustomCard({ imageSrc }) {
   return (
-    <Card>
-      <CardImg
-        top
-        width="10%"
-        src={"/images/" + imageSrc.file}
-        alt="Card image cap"
-      />
+    <Card className="custom">
+      <CardImg top src={imageSrc} alt="Card image cap" />
       <CardBody>
         <CardTitle tag="h5">Motorhome</CardTitle>
         <CardSubtitle tag="h6" className="mb-2 text-muted">
-          Subtítulo del Producto
+          Low Cost
         </CardSubtitle>
         <CardText>Detalles del producto...</CardText>
         <Button>Alquilar</Button>

@@ -1,4 +1,5 @@
-import "./Recomendados.css";
+import React from "react";
+import './Recomendados.css';
 const Recomendados = () => {
   return (
     <div className="recomendados-container">

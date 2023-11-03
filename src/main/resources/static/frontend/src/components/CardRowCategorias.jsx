@@ -1,40 +1,25 @@
+import { Row, Col } from "reactstrap";
 import CustomCard from "./CustomCard";
-import Slider from "react-slick";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
-function CardRow() {
-  const settings = {
-    dots: true,
-    infinite: true,
-    slidesToShow: 5,
-    slidesToScroll: 5,
-  };
-
-  const [motorhome, setmotorhome] = useState([]);
-  useEffect(() => {
-    axios
-      .get(` http://localhost:8080/motorhome `)
-      .then((res) => {
-        setmotorhome(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
+function CardRowCategorias() {
   return (
     <div>
-      <h2>Elige tu mejor opción para irte de vacaciones</h2>{" "}
-      {/* Añadimos el título aquí */}
-      <Slider {...settings}>
-        {motorhome.map((imageSrc, index) => (
-          <div key={index}>
-            <CustomCard imageSrc={imageSrc} />
-          </div>
-        ))}
-      </Slider>
+      <h2>Categorias</h2>
+      <Row>
+        <Col>
+          <CustomCard imageSrc={"/images/1categoria.jpeg"} />
+        </Col>
+        <Col>
+          <CustomCard imageSrc={"/images/2categoria.jpg"} />
+        </Col>
+        <Col>
+          <CustomCard imageSrc={"/images/3categoria.jpg"} />
+        </Col>
+        <Col>
+          <CustomCard imageSrc={"/images/4categoria.jpg"} />
+        </Col>
+      </Row>
     </div>
   );
 }
-export default CardRow;
+export default CardRowCategorias;

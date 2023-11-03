@@ -1,28 +1,22 @@
-package com.ProyectoIntegradorFinal.entity;
+package com.ProyectoIntegradorFinal.dto;
 
-import jakarta.persistence.*;
 
 import java.util.List;
 
-@Entity
-@Table(name = "MotorHome")
-public class MotorHome {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class ProductoDto {
+    private String nombre;
     private String marca;
     private String modelo;
-    @Column(name = "anioFabricacion")
     private int anioFabricacion;
     private String descripcion;
     private double precioAlquiler;
-
     private String file;
 
-    public MotorHome() {
+    public ProductoDto() {
     }
 
-    public MotorHome(String marca, String modelo, int anioFabricacion, String descripcion, double precioAlquiler, String file) {
+    public ProductoDto(String nombre, String marca, String modelo, int anioFabricacion, String descripcion, double precioAlquiler, String file) {
+        this.nombre = nombre;
         this.marca = marca;
         this.modelo = modelo;
         this.anioFabricacion = anioFabricacion;
@@ -31,8 +25,12 @@ public class MotorHome {
         this.file = file;
     }
 
-    public Long getId() {
-        return id;
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getMarca() {

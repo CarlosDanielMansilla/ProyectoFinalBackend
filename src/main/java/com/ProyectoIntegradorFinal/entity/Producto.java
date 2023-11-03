@@ -1,20 +1,30 @@
-package com.ProyectoIntegradorFinal.dto;
+package com.ProyectoIntegradorFinal.entity;
+
+import jakarta.persistence.*;
 
 import java.util.List;
 
-
-public class MotorHomeDto {
+@Entity
+@Table(name = "Producto")
+public class Producto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String nombre;
     private String marca;
     private String modelo;
+    @Column(name = "anioFabricacion")
     private int anioFabricacion;
     private String descripcion;
     private double precioAlquiler;
+
     private String file;
 
-    public MotorHomeDto() {
+    public Producto() {
     }
 
-    public MotorHomeDto(String marca, String modelo, int anioFabricacion, String descripcion, double precioAlquiler, String file) {
+    public Producto(String nombre, String marca, String modelo, int anioFabricacion, String descripcion, double precioAlquiler, String file) {
+        this.nombre = nombre;
         this.marca = marca;
         this.modelo = modelo;
         this.anioFabricacion = anioFabricacion;
@@ -23,8 +33,20 @@ public class MotorHomeDto {
         this.file = file;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getMarca() {
         return marca;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public void setMarca(String marca) {

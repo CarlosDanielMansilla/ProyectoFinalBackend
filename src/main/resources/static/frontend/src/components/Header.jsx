@@ -6,7 +6,7 @@ import {
   Navbar,
   NavbarBrand,
   Nav,
-  NavLink as RSNavLink
+  NavLink as RSNavLink,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./Header.css";
@@ -33,6 +33,9 @@ const Header = () => {
                 </RSNavLink>
                 <RSNavLink tag={Link} to="/contacto">
                   Contacto
+                </RSNavLink>
+                <RSNavLink tag={Link} to="/Administrador">
+                  Panel de Administracion
                 </RSNavLink>
               </div>
               <Button outline color="secondary" className="fixed-height">

@@ -1,0 +1,12 @@
+.productos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .titulo-productos{
+    font-size: 3em;
+    font-family: Arial, sans-serif;
+  }
+  

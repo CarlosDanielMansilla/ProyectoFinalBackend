@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Alta de Producto</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/post_paciente.js"></script>
+</head>
+<body>
+<div class="container">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link" href="/indexadmin.html">Volver al Inicio</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/productosList.html">Listado de Productos</a>
+        </li>
+    </ul>
+    <div class="row">
+        <div class="col-sm-7" style="background-color:#e6fffa; padding:10px; border-radius:3px">
+            <h4>Agregar Producto</h4>
+            <form id="add_new_producto">
+                
+                <div class="form-group">
+                    <label class="control-label" for="marca">Marca:</label>
+                    <input type="text" class="form-control" id="marca"
+                           placeholder="Ingrese la marca"
+                           name="marca" required/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="modelo">Modelo:</label>
+                    <input type="text" class="form-control" id="modelo"
+                           placeholder="Ingrese el modelo"
+                           name="modelo" required/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="anio">Año de Fabricación:</label>
+                    <input type="number" class="form-control" id="anio"
+                           placeholder="Ingrese el año de fabricación"
+                           name="anio" required/>
+                </div>
+               
+                <div class="form-group">
+                    <label class="control-label" for="descripcion">Descripción:</label>
+                    <input type="text" class="form-control" id="descripcion"
+                        placeholder="Ingrese la descripción del producto"
+                        name="descripcion" required/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="precio">Precio del Alquiler:</label>
+                    <input type="number" class="form-control" id="precio"
+                           placeholder="Ingrese el precio de alquiler"
+                           name="precio" required/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="categoria">Ingrese la Categoría:</label>
+                    <input type="number" class="form-control" id="categoria"
+                           placeholder="Asigne una categoria"
+                           name="categoria" required/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="imagen">Imagen:</label>
+                    <input type="text" class="form-control" id="imagen"
+                        placeholder="Subir imágenes del producto"
+                        name="imagen" required/>
+                </div>
+    
+                <button type="submit" class="btn btn-danger"
+                        id="btn-add-new-producto">Guardar</button>
+            </form>
+           <div id="response" style="display:none; margin-top:10px">
+           </div>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-sm-7" style="background-color:#e6fffa; padding:10px; border-radius:3px">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

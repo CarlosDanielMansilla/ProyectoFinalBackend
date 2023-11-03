@@ -40,6 +40,7 @@
   overflow: hidden;
 }
 
+/* No se puede hacer esto, por alguna razón le daba la altura a TODOS LOS botones... 
 .btn {
   height: 35px;  
-}
+}*/

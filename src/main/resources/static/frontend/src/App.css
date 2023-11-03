@@ -5,7 +5,7 @@ html, body, #root, .App {
   padding: 0;
   overflow-x: hidden;
 }
-.btn-primary.--bs-orange {
+.btn-primary.--bs-orange{
   --bs-btn-color: #fff;
   --bs-btn-bg: #FF6D09;
   --bs-btn-border-color: #e6924e;

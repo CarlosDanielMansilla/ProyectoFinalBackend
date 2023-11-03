@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function CardRowReco() {
+function CardRowSlider() {
   const settings = {
     dots: true,
     infinite: true,
@@ -41,4 +41,4 @@ function CardRowReco() {
     </div>
   );
 }
-export default CardRowReco;
+export default CardRowSlider;

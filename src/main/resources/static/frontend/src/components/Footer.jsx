@@ -3,7 +3,7 @@ import "./Footer.css"
 const Footer = () => {
 return (
     <footer> 
-        <div class="left-content">
+          <div class="left-content">
             <img className="img_size" src="../images/Logo 2-01.png" alt='RutaLibre-logo' />
             <p>Copyright © 2023 RutaLibre S.A. - Todos los derechos reservados.</p>
         </div>
