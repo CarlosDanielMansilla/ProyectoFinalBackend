@@ -1,5 +1,6 @@
 package com.ProyectoIntegradorFinal.entity;
 
+import com.ProyectoIntegradorFinal.dto.ProductoDto;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -31,6 +32,18 @@ public class Producto {
         this.descripcion = descripcion;
         this.precioAlquiler = precioAlquiler;
         this.file = file;
+    }
+
+    public Producto(ProductoDto productoDto) {
+        this.id = productoDto.getId();
+        this.nombre = productoDto.getNombre();
+        this.marca = productoDto.getMarca();
+        this.modelo = productoDto.getModelo();
+        this.descripcion = productoDto.getDescripcion();
+        this.anioFabricacion = productoDto.getAnioFabricacion();
+        this.precioAlquiler = productoDto.getPrecioAlquiler();
+        this.file = productoDto.getFile();
+        // Copia otros atributos aquí
     }
 
     public Long getId() {

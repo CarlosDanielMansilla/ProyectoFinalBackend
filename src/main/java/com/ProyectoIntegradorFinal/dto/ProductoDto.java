@@ -4,6 +4,7 @@ package com.ProyectoIntegradorFinal.dto;
 import java.util.List;
 
 public class ProductoDto {
+    private Long id;
     private String nombre;
     private String marca;
     private String modelo;
@@ -15,7 +16,8 @@ public class ProductoDto {
     public ProductoDto() {
     }
 
-    public ProductoDto(String nombre, String marca, String modelo, int anioFabricacion, String descripcion, double precioAlquiler, String file) {
+    public ProductoDto(Long id, String nombre, String marca, String modelo, int anioFabricacion, String descripcion, double precioAlquiler, String file) {
+        this.id = id;
         this.nombre = nombre;
         this.marca = marca;
         this.modelo = modelo;
@@ -24,6 +26,11 @@ public class ProductoDto {
         this.precioAlquiler = precioAlquiler;
         this.file = file;
     }
+
+    public Long getId() {
+        return id;
+    }
+
 
     public String getNombre() {
         return nombre;

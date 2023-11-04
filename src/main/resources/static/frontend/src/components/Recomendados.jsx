@@ -1,66 +1,57 @@
-import { Row, Col } from "reactstrap";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import CustomCardProduct from "./CustomCardProduct";
 import "./Recomendados.css";
 
 function Recomendados() {
-  const [motorhome, setmotorhome] = useState([]);
+  const [motorhome, setMotorhome] = useState([]);
   useEffect(() => {
     axios
       .get(` http://localhost:8080/motorhome `)
       .then((res) => {
-        setmotorhome(res.data);
+        const uniqueMotorhomes = [...new Set(res.data)];
+        setMotorhome(uniqueMotorhomes);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const imageListRec = [
-    "/images/MH1-1.jpg",
-    "/images/MH2-1.jpg",
-    "/images/MH3-2.jpg",
-    "/images/MH4-1.jpg",
-    "/images/MH5-5.jpg",
-    "/images/MH6-1.jpg",
-    "/images/MH7-1.jpg",
-    "/images/MH8-1.jpg",
-    "/images/MH9-1.jpg",
-    "/images/MH10-1.jpg",
-  ];
+  // Función para obtener un orden aleatorio de los productos
+  const shuffleArray = (array) => {
+    const shuffled = array.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
 
-  const imageListRandom = Array.from(
-    { length: 5 },
-    () => imageListRec[Math.floor(Math.random() * imageListRec.length)]
-  );
+  const shuffledMotorhome = shuffleArray(motorhome);
+
+  // Conjunto para mantener un registro de productos ya mostrados
+  const shownProducts = new Set();
+  const uniqueShuffledMotorhome = [];
+
+  shuffledMotorhome.forEach((producto) => {
+    if (!shownProducts.has(producto.nombre)) {
+      shownProducts.add(producto.nombre);
+      uniqueShuffledMotorhome.push(producto);
+    }
+  });
+
   return (
     <div className="Recomendados">
       <h5>TOP MOTORHOMES</h5>
       <h2>Las mejores ofertas para tu viaje</h2>
-      {/* <Row className="g-5 justify-content-center">
-        <Col>
-          {imageListRandom.map((imageSrc, index) => (
-            <div key={index}>
-              <CustomCardProduct imageSrc={imageSrc} />
-            </div>
-          ))}
-        </Col>
-        <Col>
-          {imageListRandom.map((imageSrc, index) => (
-            <div key={index}>
-              <CustomCardProduct imageSrc={imageSrc} />
-            </div>
-          ))}
-        </Col>
-      </Row> */}
+
       <div
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(2, 1fr)",
-          gridTemplateRows: "repeat(2, 1fr)",
+          gridTemplateRows: "repeat(3, 1fr)",
           gap: "10px",
         }}
       >
-        {motorhome.map((producto) => (
+        {uniqueShuffledMotorhome.map((producto) => (
           <CustomCardProduct key={producto.nombre} producto={producto} />
         ))}
       </div>

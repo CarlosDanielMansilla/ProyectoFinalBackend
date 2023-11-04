@@ -10,6 +10,7 @@ import Administrador from "./routes/Administrador";
 import AgregarProducto from "./components/AgregarProducto";
 import ListarMotorHome from "./routes/ListarMotorHome";
 import "./App.css";
+import AgregarImagen from "./components/AgregarImagen";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/administrador" element={<Administrador />} />
           <Route path="/agregarProducto" element={<AgregarProducto />} />
           <Route path="/listarProducto" element={<ListarMotorHome />} />
+          <Route path="/agregarImagen" element={<AgregarImagen />} />
         </Routes>
         <Footer />
       </Router>
