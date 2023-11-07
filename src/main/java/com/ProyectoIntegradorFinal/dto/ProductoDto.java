@@ -11,12 +11,12 @@ public class ProductoDto {
     private int anioFabricacion;
     private String descripcion;
     private double precioAlquiler;
-    private String file;
+
 
     public ProductoDto() {
     }
 
-    public ProductoDto(Long id, String nombre, String marca, String modelo, int anioFabricacion, String descripcion, double precioAlquiler, String file) {
+    public ProductoDto(Long id, String nombre, String marca, String modelo, int anioFabricacion, String descripcion, double precioAlquiler) {
         this.id = id;
         this.nombre = nombre;
         this.marca = marca;
@@ -24,7 +24,6 @@ public class ProductoDto {
         this.anioFabricacion = anioFabricacion;
         this.descripcion = descripcion;
         this.precioAlquiler = precioAlquiler;
-        this.file = file;
     }
 
     public Long getId() {
@@ -80,11 +79,5 @@ public class ProductoDto {
         this.precioAlquiler = precioAlquiler;
     }
 
-    public String getFile() {
-        return file;
-    }
 
-    public void setFile(String file) {
-        this.file = file;
-    }
 }

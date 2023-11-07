@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import CustomCardProduct from "./CustomCardProduct";
+import axios from "axios";
+import ReactPaginate from "react-paginate";
 import "./Recomendados.css";
 
 function Recomendados() {
   const [motorhome, setMotorhome] = useState([]);
+  const [pageNumber, setPageNumber] = useState(0);
+  const itemsPerPage = 6;
+
   useEffect(() => {
     axios
-      .get(` http://localhost:8080/motorhome `)
+      .get(`http://localhost:8080/motorhome`)
       .then((res) => {
         const uniqueMotorhomes = [...new Set(res.data)];
         setMotorhome(uniqueMotorhomes);
@@ -27,16 +31,17 @@ function Recomendados() {
 
   const shuffledMotorhome = shuffleArray(motorhome);
 
-  // Conjunto para mantener un registro de productos ya mostrados
-  const shownProducts = new Set();
-  const uniqueShuffledMotorhome = [];
+  // Paginación
+  const pagesVisited = pageNumber * itemsPerPage;
+  const displayItems = shuffledMotorhome.slice(
+    pagesVisited,
+    pagesVisited + itemsPerPage
+  );
 
-  shuffledMotorhome.forEach((producto) => {
-    if (!shownProducts.has(producto.nombre)) {
-      shownProducts.add(producto.nombre);
-      uniqueShuffledMotorhome.push(producto);
-    }
-  });
+  // Manejar el cambio de página
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
 
   return (
     <div className="Recomendados">
@@ -51,11 +56,24 @@ function Recomendados() {
           gap: "10px",
         }}
       >
-        {uniqueShuffledMotorhome.map((producto) => (
+        {displayItems.map((producto) => (
           <CustomCardProduct key={producto.nombre} producto={producto} />
         ))}
       </div>
+
+      <ReactPaginate
+        previousLabel={"Anterior"}
+        nextLabel={"Siguiente"}
+        pageCount={Math.ceil(shuffledMotorhome.length / itemsPerPage)}
+        onPageChange={changePage}
+        containerClassName={"pagination"}
+        previousLinkClassName={"previous"}
+        nextLinkClassName={"next"}
+        disabledClassName={"disabled"}
+        activeClassName={"active"}
+      />
     </div>
   );
 }
+
 export default Recomendados;

@@ -12,10 +12,12 @@ public interface IProductoService {
     //List<MotorHomeDto> listarInternosFiltro(String modelo);
 
     ProductoDto buscarMotorHomePorId(Long id);
+    Producto buscarProductoPorNombre(String nombre);
 
-    ProductoDto registrarMotorHome(Producto producto, MultipartFile imagen);
+    ProductoDto registrarMotorHome(Producto producto);
 
     ProductoDto actualizarMotorHome(Producto producto);
 
     void eliminarMotorHome(Long id);
+
 }

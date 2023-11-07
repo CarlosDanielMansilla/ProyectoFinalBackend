@@ -1,15 +1,16 @@
-.carousel.slide img{
-    height: 400px;
-}
+
 
 .card.customPro {
-    margin: 10px 0;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    max-height: 500px;
+    margin: 10px auto;
     padding: 0;
     box-shadow: 0 0 15px -5px;
     transition: 0.3s;
     animation: ease-in;
 }
-
-.customPro button{
-    text-align: center;
+.customPro button {
+  text-align: center;
 }

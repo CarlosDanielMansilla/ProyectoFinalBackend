@@ -1,3 +1,4 @@
+import React from "react";
 import CustomCard from "./CustomCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -12,6 +13,7 @@ function CardRowSlider() {
   };
 
   const imageListRec = [
+    
     "/images/MH1-1.jpg",
     "/images/MH2-1.jpg",
     "/images/MH3-2.jpg",
@@ -23,6 +25,7 @@ function CardRowSlider() {
     "/images/MH6-1.jpg",
   ];
 
+  
   const imageListRandom = Array.from(
     { length: 10 },
     () => imageListRec[Math.floor(Math.random() * imageListRec.length)]

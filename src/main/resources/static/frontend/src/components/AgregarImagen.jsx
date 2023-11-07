@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const AgregarImagen = () => {
   const [formData, setFormData] = useState({
-    id: "",
+    nombre: "",
     file: "", // Cambiado de un array a un solo archivo
   });
 
@@ -25,11 +25,7 @@ const AgregarImagen = () => {
 
     const formDataToSend = new FormData();
 
-    if (formData.id) {
-      formDataToSend.append("id", formData.id);
-    } else {
-      formDataToSend.append("id", 0);
-    }
+    formDataToSend.append("nombre", formData.nombre);
 
     formDataToSend.append("file", formData.file);
     // formData.file.forEach((file, index) => {
@@ -72,12 +68,12 @@ const AgregarImagen = () => {
             alignItems: "center",
           }}
         >
-          <label htmlFor="id">id</label>
+          <label htmlFor="nombre">nombre</label>
           <input
-            type="number"
-            id="id"
-            name="id"
-            value={formData.id}
+            type="text"
+            id="nombre"
+            name="nombre"
+            value={formData.nombre}
             onChange={handleInputChange}
           />
 

@@ -34,19 +34,21 @@ const Header = () => {
                 <RSNavLink tag={Link} to="/contacto">
                   Contacto
                 </RSNavLink>
-                <RSNavLink tag={Link} to="/Administrador">
+                <RSNavLink tag={Link} to="/administrador">
                   Panel de Administracion
                 </RSNavLink>
               </div>
               <Button outline color="secondary" className="fixed-height">
                 Iniciar Sesión
               </Button>
-              <Button
-                color="primary"
-                className="sign-up-button fixed-height --bs-orange"
-              >
-                Crear Cuenta
-              </Button>
+              <Link to="/registrar">
+                <Button
+                  color="primary"
+                  className="sign-up-button fixed-height --bs-orange"
+                >
+                  Crear Cuenta
+                </Button>
+              </Link>
             </Nav>
           </Col>
         </Row>

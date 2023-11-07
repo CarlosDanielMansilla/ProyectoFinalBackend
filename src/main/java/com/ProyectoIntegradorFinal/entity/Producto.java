@@ -19,19 +19,18 @@ public class Producto {
     private String descripcion;
     private double precioAlquiler;
 
-    private String file;
+    //private String file;
 
     public Producto() {
     }
 
-    public Producto(String nombre, String marca, String modelo, int anioFabricacion, String descripcion, double precioAlquiler, String file) {
+    public Producto(String nombre, String marca, String modelo, int anioFabricacion, String descripcion, double precioAlquiler) {
         this.nombre = nombre;
         this.marca = marca;
         this.modelo = modelo;
         this.anioFabricacion = anioFabricacion;
         this.descripcion = descripcion;
         this.precioAlquiler = precioAlquiler;
-        this.file = file;
     }
 
     public Producto(ProductoDto productoDto) {
@@ -42,7 +41,6 @@ public class Producto {
         this.descripcion = productoDto.getDescripcion();
         this.anioFabricacion = productoDto.getAnioFabricacion();
         this.precioAlquiler = productoDto.getPrecioAlquiler();
-        this.file = productoDto.getFile();
         // Copia otros atributos aquí
     }
 
@@ -98,11 +96,5 @@ public class Producto {
         this.precioAlquiler = precioAlquiler;
     }
 
-    public String getFile() {
-        return file;
-    }
 
-    public void setFile(String file) {
-        this.file = file;
-    }
 }
