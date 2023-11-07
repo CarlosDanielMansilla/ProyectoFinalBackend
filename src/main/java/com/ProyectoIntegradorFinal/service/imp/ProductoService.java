@@ -3,25 +3,38 @@ package com.ProyectoIntegradorFinal.service.imp;
 import com.ProyectoIntegradorFinal.dto.ProductoDto;
 import com.ProyectoIntegradorFinal.entity.Producto;
 import com.ProyectoIntegradorFinal.repository.ProductoRepository;
+import com.ProyectoIntegradorFinal.service.IProductoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @Service
-public class IProductoService implements com.ProyectoIntegradorFinal.service.IProductoService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(IProductoService.class);
+public class ProductoService implements IProductoService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductoService.class);
     private final ObjectMapper objectMapper;
     private final ProductoRepository productoRepository;
 
     @Autowired
-    public IProductoService(ObjectMapper objectMapper, ProductoRepository productoRepository) {
+    public ProductoService(ObjectMapper objectMapper, ProductoRepository productoRepository) {
         this.objectMapper = objectMapper;
         this.productoRepository = productoRepository;
+    }
+
+    @Override
+    public Producto buscarProductoPorNombre(String nombre) {
+        Producto producto = productoRepository.findByNombre(nombre);
+        //ProductoDto productoDto = null;
+        if(producto!= null){
+            //productoDto = objectMapper.convertValue(producto , ProductoDto.class);
+            LOGGER.info("Producto encontrado: {}", producto);
+        }else{
+            LOGGER.info("El nombre no se encuentra registrado en la base de datos");
+        }
+        return producto;
     }
 
 
@@ -48,7 +61,7 @@ public class IProductoService implements com.ProyectoIntegradorFinal.service.IPr
     }
 
     @Override
-    public ProductoDto registrarMotorHome(Producto producto, MultipartFile imagen) {
+    public ProductoDto registrarMotorHome(Producto producto) {
 
         Producto productoReg = productoRepository.save(producto);
 

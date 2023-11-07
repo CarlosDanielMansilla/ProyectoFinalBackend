@@ -6,11 +6,11 @@ import Produ from "./routes/Produ";
 import Recomendados from "./routes/Recomendados";
 import Contacto from "./routes/Contacto";
 import Footer from "./components/Footer";
-import Administrador from "./routes/Administrador";
-import AgregarProducto from "./components/AgregarProducto";
-import ListarMotorHome from "./routes/ListarMotorHome";
 import "./App.css";
+import Administrador from "./routes/Administrador";
+import RegistroProducto from "./routes/RegistroProducto";
 import AgregarImagen from "./components/AgregarImagen";
+import RegistroCuenta from "./routes/RegistroCuenta";
 
 function App() {
   return (
@@ -19,14 +19,14 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Body />} />
-          <Route path="/producto" element={<Produ />} />
+          <Route path="/producto/:nombre" element={<Produ />} />
           <Route path="/productos" element={<Productos />} />
           <Route path="/recomendados" element={<Recomendados />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/administrador" element={<Administrador />} />
-          <Route path="/agregarProducto" element={<AgregarProducto />} />
-          <Route path="/listarProducto" element={<ListarMotorHome />} />
+          <Route path="/registrarProducto" element={<RegistroProducto />} />
           <Route path="/agregarImagen" element={<AgregarImagen />} />
+          <Route path="/registrar" element={<RegistroCuenta />} />
         </Routes>
         <Footer />
       </Router>

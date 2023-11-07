@@ -35,44 +35,21 @@ public class ProductoController {
         return IProductoService.listarMotorHome();
     }
     @PostMapping("/registrar")
-    public ResponseEntity<ProductoDto> registrar(@RequestParam("nombre") String nombre,
-                                                 @RequestParam("marca") String marca,
-                                                 @RequestParam("modelo") String modelo,
-                                                 @RequestParam(value = "anioFabricacion", required = false) int anioFabricacion,
-                                                 @RequestParam("descripcion") String descripcion,
-                                                 @RequestParam("precioAlquiler") double precioAlquiler,
-                                                 @RequestParam(value= "file" , required = false) MultipartFile imagen) {
+    public ResponseEntity<ProductoDto> registrar(@RequestBody Producto producto) {
         ResponseEntity<ProductoDto> respuesta;
         try {
-            //logger.info("Intentando registrar MotorHome: {}", motorHome);
-            Producto producto = new Producto();
-            producto.setNombre(nombre);
-            producto.setMarca(marca);
-            producto.setModelo(modelo);
-            producto.setAnioFabricacion(anioFabricacion);
-            producto.setDescripcion(descripcion);
-            producto.setPrecioAlquiler(precioAlquiler);
-            if(imagen != null){
-                Path directorioImagenes = Paths.get("src//main//resources//static//frontend//public/images");
-                String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
+            logger.info("Intentando registrar MotorHome: {}", producto);
 
-                // Convierte las imágenes en bytes
-                /*List<byte[]> imagenesEnBytes = Arrays.stream(imagenes)
-                        .map(multipartFile -> {
-                            try {
-                                return multipartFile.getBytes();
-                            } catch (IOException e) {
-                                // Manejo de la excepción
-                                e.printStackTrace(); // Puedes realizar un manejo adecuado de la excepción aquí
-                                return new byte[0]; // Otra acción apropiada en caso de excepción
-                            }
-                        })
-                        .collect(Collectors.toList());*/
+            //if(imagen != null){
+                //Path directorioImagenes = Paths.get("src//main//resources//static//frontend//public/images");
+                //String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
 
-                byte [] bytesImg = imagen.getBytes();
-                Path rutaCompleta= Paths.get(rutaAbsoluta + "//" + imagen.getOriginalFilename());
-                Files.write(rutaCompleta, bytesImg);
-                producto.setFile(imagen.getOriginalFilename());
+
+
+                //byte [] bytesImg = imagen.getBytes();
+                //Path rutaCompleta= Paths.get(rutaAbsoluta + "//" + imagen.getOriginalFilename());
+                //Files.write(rutaCompleta, bytesImg);
+                //producto.setFile(imagen.getOriginalFilename());
                 // Procesar la lista de imágenes
                 //List<String> nombresImagenes = new ArrayList<>();
 
@@ -90,12 +67,12 @@ public class ProductoController {
 
                     producto.setFile(nombresImagenes);
                 }*/
-            }
-            else {
-                producto.setFile(null);
-            }
+           // }
+           // else {
+              //  producto.setFile(null);
+           // }
             //MultipartFile[] imagenesArray = imagenes.toArray(new MultipartFile[0]);
-            ProductoDto motorHomeRegistrado = IProductoService.registrarMotorHome(producto, imagen);
+            ProductoDto motorHomeRegistrado = IProductoService.registrarMotorHome(producto);
 
             if (motorHomeRegistrado != null) {
                 logger.info("MotorHome registrado exitosamente: {}", motorHomeRegistrado);

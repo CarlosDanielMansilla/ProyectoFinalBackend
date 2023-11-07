@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -28,17 +30,18 @@ public class ImagenController {
     private final IProductoService IProductoService;
 
     @Autowired
-    public ImagenController(com.ProyectoIntegradorFinal.service.IImagenService IImagenService, com.ProyectoIntegradorFinal.service.IProductoService IProductoService) {
+    public ImagenController(IImagenService IImagenService, IProductoService IProductoService) {
         this.IImagenService = IImagenService;
         this.IProductoService = IProductoService;
     }
 
     @PostMapping("/guardar")
-    public ResponseEntity<ImagenesDto> registrar(@RequestParam("id") Long id, @RequestParam(value = "file", required = false) MultipartFile imagen) {
+    public ResponseEntity<ImagenesDto> registrar(@RequestParam("nombre") String nombre, @RequestParam(value = "file", required = false) MultipartFile imagen) {
         ResponseEntity<ImagenesDto> respuesta;
         try {
-            ProductoDto productoDto = IProductoService.buscarMotorHomePorId(id);
+            Producto productoNom = IProductoService.buscarProductoPorNombre(nombre);
 
+            ProductoDto productoDto = IProductoService.buscarMotorHomePorId(productoNom.getId());
 
             if (productoDto != null) {
                 Producto producto = new Producto(productoDto);
@@ -69,13 +72,39 @@ public class ImagenController {
                     respuesta = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
                 }
             } else {
-                logger.error("No se pudo encontrar el producto con el id proporcionado: " + id);
+                logger.error("No se pudo encontrar el producto con el nombre proporcionado: " + nombre);
                 respuesta = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
         } catch (Exception e) {
             logger.error("Error al guardar la imagen", e);
             respuesta = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+        return respuesta;
+    }
+
+    @GetMapping("/buscarPorProducto")
+    public ResponseEntity<List<ImagenesDto>> buscarPorProducto(@RequestParam("nombre") String nombre) {
+        ResponseEntity<List<ImagenesDto>> respuesta;
+        List<ImagenesDto> imagenesDtos = null;
+
+        // Verifica si se proporciona un valor válido para el parámetro fiscalia
+        if (nombre != null && !nombre.isEmpty()) {
+            //internos = iInternoService.listarInternosFiltro(fiscalia);
+            Producto productoNom = IProductoService.buscarProductoPorNombre(nombre);
+            imagenesDtos = IImagenService.listarImagenes(productoNom);
+
+        } else {
+            // Si no se proporciona un valor válido para fiscalia o es vacío, devuelve todos los internos
+            //imagenesDtos = iInternoService.listarInternos();
+        }
+
+        if (!imagenesDtos.isEmpty()) {
+            respuesta = new ResponseEntity<>(imagenesDtos, HttpStatus.OK);
+        } else {
+            // En lugar de devolver HttpStatus.NOT_FOUND, puedes devolver una lista vacía
+            respuesta = new ResponseEntity<>(Collections.emptyList(), HttpStatus.OK);
+        }
+
         return respuesta;
     }
 }

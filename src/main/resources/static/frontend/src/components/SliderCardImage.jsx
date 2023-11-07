@@ -6,25 +6,36 @@ import {
   CarouselIndicators,
   CarouselCaption,
 } from "reactstrap";
+// import PropTypes from "prop-types";
+import "./SliderCardImage.css";
 
 function SliderCardImage(args) {
-  const items = [
-    {
-      src: "../images/" + args.src,
-      altText: "Motorhome 1",
-      key: 1,
-    },
-    {
-      src: "../images/MH6-1.jpg",
-      altText: "Slide 2",
-      key: 2,
-    },
-    {
-      src: "../images/MH10-1.jpg",
-      altText: "Slide 3",
-      key: 3,
-    },
-  ];
+  // const imagen = [imagenes];
+
+  const items = args.src.map((imagen, index) => ({
+    src: `../images/${imagen.file}`,
+    altText: `Slide ${index + 1}`,
+    key: index,
+  }));
+
+  // const items = [
+  //   {
+  //     src: "../images/" + imagen[0],
+  //     altText: "Motorhome 1",
+  //     key: 1,
+  //   },
+  //   {
+  //     src: "../images/" + imagen[1],
+  //     altText: "Slide 2",
+  //     key: 2,
+  //   },
+  //   {
+  //     src: "../images/" + imagen[2],
+  //     altText: "Slide 3",
+  //     key: 3,
+  //   },
+  // ];
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -52,11 +63,8 @@ function SliderCardImage(args) {
         onExited={() => setAnimating(false)}
         key={item.src}
       >
-        <img src={item.src} alt={item.altText} />
-        <CarouselCaption
-          captionText={item.caption}
-          captionHeader={item.caption}
-        />
+        <img className="carousel-image" src={item.src} alt={item.altText} />
+        <CarouselCaption captionText="" captionHeader="" />
       </CarouselItem>
     );
   });
@@ -87,5 +95,12 @@ function SliderCardImage(args) {
     </Carousel>
   );
 }
+
+// SliderCardImage.propTypes = {
+//   imagenes: PropTypes.oneOfType([
+//     PropTypes.string,
+//     PropTypes.arrayOf(PropTypes.string),
+//   ]).isRequired,
+// };
 
 export default SliderCardImage;
