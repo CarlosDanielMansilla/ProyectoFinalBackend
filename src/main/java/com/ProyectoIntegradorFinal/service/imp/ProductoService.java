@@ -2,6 +2,7 @@ package com.ProyectoIntegradorFinal.service.imp;
 
 import com.ProyectoIntegradorFinal.dto.CategoriaDto;
 import com.ProyectoIntegradorFinal.dto.ProductoDto;
+import com.ProyectoIntegradorFinal.entity.Categoria;
 import com.ProyectoIntegradorFinal.entity.Producto;
 import com.ProyectoIntegradorFinal.repository.CategoriaRepository;
 import com.ProyectoIntegradorFinal.repository.ProductoRepository;
@@ -12,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -72,15 +74,36 @@ public class ProductoService implements IProductoService {
     @Override
     public ProductoDto registrarMotorHome(Producto producto) {
 
+        // Asegúrate de que las categorías estén en un estado gestionado
+        Set<Categoria> categoriasGestionadas = new HashSet<>();
+        for (Categoria categoria : producto.getCategorias()) {
+            if (categoria.getId() != null) {
+                // La categoría ya existe en la base de datos, así que cargamos la versión gestionada
+                categoriasGestionadas.add(categoriaRepository.getReferenceById(categoria.getId())/*.getOne(categoria.getId())*/);
+            } else {
+                // La categoría es nueva y debe ser persistida
+                categoriasGestionadas.add(categoriaRepository.save(categoria));
+            }
+            // Asigna el producto a la categoría
+            categoria.setProducto(producto);
+        }
+
+        // Actualiza el conjunto de categorías del producto con las categorías gestionadas
+        //producto.setCategorias(categoriasGestionadas);
+        //producto.setCategorias(producto.getCategorias());
+
         Producto productoReg = productoRepository.save(producto);
+
         Set<CategoriaDto> categoriaDtoSet = productoReg.getCategorias()
                 .stream()
                 .map(categoria -> objectMapper.convertValue(categoria, CategoriaDto.class))
                 .collect(Collectors.toSet());
+
         ProductoDto productoDtoNuevo = objectMapper.convertValue(productoReg, ProductoDto.class);
         productoDtoNuevo.setCategorias(categoriaDtoSet);
         LOGGER.info("MotorHome registrado: {}", productoReg);
-        return objectMapper.convertValue(productoReg, ProductoDto.class);
+
+        return productoDtoNuevo;
     }
 
     @Override

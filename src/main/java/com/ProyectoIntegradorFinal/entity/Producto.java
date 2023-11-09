@@ -22,13 +22,7 @@ public class Producto {
     private String descripcion;
     private double precioAlquiler;
 
-    @ManyToMany
-    @JoinTable(
-            name = "Producto_Categoria",
-            joinColumns = @JoinColumn(name = "producto_id"),
-            inverseJoinColumns = @JoinColumn(name = "categoria_id")
-    )
-    @JsonManagedReference
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.PERSIST)
     private Set<Categoria> categorias = new HashSet<>();
 
 

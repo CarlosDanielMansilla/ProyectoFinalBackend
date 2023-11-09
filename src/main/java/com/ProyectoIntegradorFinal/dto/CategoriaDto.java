@@ -10,17 +10,15 @@ public class CategoriaDto {
     private String nombre;
     private String descripcion;
     private String file;
-    private Set<ProductoDto> productos;
 
     public CategoriaDto() {
     }
 
-    public CategoriaDto(Long id, String nombre, String descripcion, String file, Set<ProductoDto> productos) {
+    public CategoriaDto(Long id, String nombre, String descripcion, String file) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.file = file;
-        this.productos = productos;
     }
 
     public Long getId() {
@@ -55,11 +53,5 @@ public class CategoriaDto {
         this.file = file;
     }
 
-    public Set<ProductoDto> getProductos() {
-        return productos;
-    }
 
-    public void setProductos(Set<ProductoDto> productos) {
-        this.productos = productos;
-    }
 }

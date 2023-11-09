@@ -17,18 +17,19 @@ public class Categoria {
     private String nombre;
     private String descripcion;
     private String file;
-    @ManyToMany(mappedBy = "categorias")
-    @JsonBackReference
-    private Set<Producto> productos = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "producto_id")
+    private Producto producto;
 
     public Categoria() {
     }
 
-    public Categoria(String nombre, String descripcion, String file, Set<Producto> productos) {
+    public Categoria(Long id, String nombre, String descripcion, String file, Producto producto) {
+        this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.file = file;
-        this.productos = productos;
+        this.producto = producto;
     }
 
     public Long getId() {
@@ -60,11 +61,11 @@ public class Categoria {
         this.file = file;
     }
 
-    public Set<Producto> getProductos() {
-        return productos;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setProductos(Set<Producto> productos) {
-        this.productos = productos;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 }
