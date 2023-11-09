@@ -1,9 +1,12 @@
 package com.ProyectoIntegradorFinal.entity;
 
 import com.ProyectoIntegradorFinal.dto.ProductoDto;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "Producto")
@@ -19,18 +22,43 @@ public class Producto {
     private String descripcion;
     private double precioAlquiler;
 
+    @ManyToMany
+    @JoinTable(
+            name = "Producto_Categoria",
+            joinColumns = @JoinColumn(name = "producto_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id")
+    )
+    @JsonManagedReference
+    private Set<Categoria> categorias = new HashSet<>();
+
+
+
     //private String file;
 
     public Producto() {
     }
 
-    public Producto(String nombre, String marca, String modelo, int anioFabricacion, String descripcion, double precioAlquiler) {
+    public Producto(String nombre, String marca, String modelo, int anioFabricacion, String descripcion, double precioAlquiler, Set<Categoria> categorias) {
         this.nombre = nombre;
         this.marca = marca;
         this.modelo = modelo;
         this.anioFabricacion = anioFabricacion;
         this.descripcion = descripcion;
         this.precioAlquiler = precioAlquiler;
+        this.categorias = categorias;
+    }
+
+    public Producto(ProductoDto productoDto, Set<Categoria> categorias) {
+        this.id = productoDto.getId();
+        this.nombre = productoDto.getNombre();
+        this.marca = productoDto.getMarca();
+        this.modelo = productoDto.getModelo();
+        this.descripcion = productoDto.getDescripcion();
+        this.anioFabricacion = productoDto.getAnioFabricacion();
+        this.precioAlquiler = productoDto.getPrecioAlquiler();
+        this.categorias = categorias;
+        //this.categorias = productoDto.getCategorias();
+        // Copia otros atributos aquí
     }
 
     public Producto(ProductoDto productoDto) {
@@ -41,7 +69,6 @@ public class Producto {
         this.descripcion = productoDto.getDescripcion();
         this.anioFabricacion = productoDto.getAnioFabricacion();
         this.precioAlquiler = productoDto.getPrecioAlquiler();
-        // Copia otros atributos aquí
     }
 
     public Long getId() {
@@ -96,5 +123,11 @@ public class Producto {
         this.precioAlquiler = precioAlquiler;
     }
 
+    public Set<Categoria> getCategorias() {
+        return categorias;
+    }
 
+    public void setCategorias(Set<Categoria> categorias) {
+        this.categorias = categorias;
+    }
 }

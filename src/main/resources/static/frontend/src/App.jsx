@@ -11,6 +11,9 @@ import Administrador from "./routes/Administrador";
 import RegistroProducto from "./routes/RegistroProducto";
 import AgregarImagen from "./components/AgregarImagen";
 import RegistroCuenta from "./routes/RegistroCuenta";
+import ListarProductos from "./routes/ListarProductos";
+import RegistroCategoria from "./routes/RegistroCategoria";
+import ListarCategorias from "./routes/ListarCategorias";
 
 function App() {
   return (
@@ -27,6 +30,9 @@ function App() {
           <Route path="/registrarProducto" element={<RegistroProducto />} />
           <Route path="/agregarImagen" element={<AgregarImagen />} />
           <Route path="/registrar" element={<RegistroCuenta />} />
+          <Route path="/listarProducto" element={<ListarProductos />} />
+          <Route path="/agregarCategoria" element={<RegistroCategoria />} />
+          <Route path="/listarCategorias" element={<ListarCategorias />} />
         </Routes>
         <Footer />
       </Router>

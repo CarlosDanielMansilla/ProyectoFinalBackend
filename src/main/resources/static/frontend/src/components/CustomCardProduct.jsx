@@ -33,7 +33,9 @@ function CustomCardProduct({ producto }) {
         <CardBody>
           <CardTitle tag="h5">{producto.nombre}</CardTitle>
           <CardSubtitle tag="h6" className="mb-2 text-muted">
-            Low Cost
+            {producto.categorias.map((categoria) => (
+              <span key={categoria.id}>{categoria.nombre} </span>
+            ))}
           </CardSubtitle>
           <CardText>Detalles del producto...</CardText>
           <Button color="primary" className="--bs-orange">
@@ -46,10 +48,7 @@ function CustomCardProduct({ producto }) {
 }
 
 CustomCardProduct.propTypes = {
-  producto: PropTypes.shape({
-    nombre: PropTypes.string,
-    // Otras propiedades del objeto aquí
-  }).isRequired,
+  producto: PropTypes.object.isRequired,
 };
 
 export default CustomCardProduct;

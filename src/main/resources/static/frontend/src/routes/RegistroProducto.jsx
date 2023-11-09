@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./RegistroProductos.css";
 
 const RegistroProducto = () => {
@@ -10,12 +10,35 @@ const RegistroProducto = () => {
     anioFabricacion: 0,
     descripcion: "",
     precioAlquiler: 0.0,
-    //file: "", // Cambiado de un array a un solo archivo
+    categorias: [], // Cambiado a un arreglo para almacenar objetos de categoría
   });
+
+  const [categorias, setCategorias] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/categoria")
+      .then((res) => {
+        setCategorias(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const handleCategoriaChange = (e) => {
+    const selectedCategoriaIds = Array.from(
+      e.target.selectedOptions,
+      (option) => option.value
+    );
+
+    const selectedCategorias = categorias.filter((categoria) =>
+      selectedCategoriaIds.includes(categoria.id.toString())
+    );
+
+    setFormData({ ...formData, categorias: selectedCategorias });
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
     setFormData({ ...formData, [name]: value });
   };
 
@@ -33,11 +56,8 @@ const RegistroProducto = () => {
       axios
         .post("http://localhost:8080/motorhome/registrar", formData)
         .then((res) => {
-          // Manejar la respuesta del servidor, por ejemplo, mostrar un mensaje de éxito
           console.log("Motorhome registrado exitosamente", res.data);
         });
-
-      // Limpiar el formulario o realizar otras acciones necesarias
     } catch (error) {
       console.error("Error al registrar el Motorhome", error);
     }
@@ -81,7 +101,7 @@ const RegistroProducto = () => {
           value={formData.descripcion}
           onChange={handleInputChange}
         />
-        <label htmlFor="anioFabricacion">año de fabricacion</label>
+        <label htmlFor="anioFabricacion">año de fabricación</label>
         <input
           type="number"
           id="anioFabricacion"
@@ -97,6 +117,23 @@ const RegistroProducto = () => {
           value={formData.precioAlquiler}
           onChange={handleInputChange}
         />
+
+        <label htmlFor="categorias">Categorías (selección múltiple)</label>
+        <select
+          id="categorias"
+          name="categorias"
+          multiple
+          value={formData.categorias.map((categoria) =>
+            categoria.id.toString()
+          )}
+          onChange={handleCategoriaChange}
+        >
+          {categorias.map((categoria) => (
+            <option key={categoria.id} value={categoria.id}>
+              {categoria.nombre}
+            </option>
+          ))}
+        </select>
 
         <input type="submit" value="Guardar" />
       </form>

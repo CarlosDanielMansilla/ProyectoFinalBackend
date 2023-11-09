@@ -1,46 +1,42 @@
-
-
 @import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Work+Sans:wght@100;300;600&display=swap');
 
-
 .header {
-  width: 100%;
   background-color: #FFFFFF;
 }
+
 .logo-container {
   display: flex;
   align-items: center;
 }
 
 .logo-text {
-  font-family: 'Tenor Sans';
-  font-size: 15px; 
+  font-family: "Tenor Sans", sans-serif;
+  font-size: 15px;
   font-weight: bold;
-  color: #228B22; 
+  color: #228b22;
   margin-left: 10px;
 }
 
-.buttons-container {
-  display: flex;
-  justify-content: flex-end;
+.btn-primary.--bs-orange {
+  margin-left: 10px;
 }
 
-.btn-primary.--bs-orange{
-  margin-left: 10px; 
-}
-
-
-.links-container {
-  display: flex;
-  margin-right: 500px;
-}
 .fixed-height {
-  height: 40px;  
+  height: 40px;
   white-space: nowrap;
   overflow: hidden;
 }
 
-/* No se puede hacer esto, por alguna razón le daba la altura a TODOS LOS botones... 
-.btn {
-  height: 35px;  
-}*/
+.links-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .fixed-height {
+    width: 100%;
+  }
+}

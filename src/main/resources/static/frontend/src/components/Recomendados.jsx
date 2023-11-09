@@ -14,7 +14,8 @@ function Recomendados() {
       .get(`http://localhost:8080/motorhome`)
       .then((res) => {
         const uniqueMotorhomes = [...new Set(res.data)];
-        setMotorhome(uniqueMotorhomes);
+        const shuffledMotorhome = shuffleArray(uniqueMotorhomes);
+        setMotorhome(shuffledMotorhome);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -29,11 +30,9 @@ function Recomendados() {
     return shuffled;
   };
 
-  const shuffledMotorhome = shuffleArray(motorhome);
-
   // Paginación
   const pagesVisited = pageNumber * itemsPerPage;
-  const displayItems = shuffledMotorhome.slice(
+  const displayItems = motorhome.slice(
     pagesVisited,
     pagesVisited + itemsPerPage
   );
@@ -64,7 +63,7 @@ function Recomendados() {
       <ReactPaginate
         previousLabel={"Anterior"}
         nextLabel={"Siguiente"}
-        pageCount={Math.ceil(shuffledMotorhome.length / itemsPerPage)}
+        pageCount={Math.ceil(motorhome.length / itemsPerPage)}
         onPageChange={changePage}
         containerClassName={"pagination"}
         previousLinkClassName={"previous"}

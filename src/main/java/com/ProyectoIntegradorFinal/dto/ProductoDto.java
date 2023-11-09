@@ -2,6 +2,7 @@ package com.ProyectoIntegradorFinal.dto;
 
 
 import java.util.List;
+import java.util.Set;
 
 public class ProductoDto {
     private Long id;
@@ -11,12 +12,13 @@ public class ProductoDto {
     private int anioFabricacion;
     private String descripcion;
     private double precioAlquiler;
+    private Set<CategoriaDto> categorias;
 
 
     public ProductoDto() {
     }
 
-    public ProductoDto(Long id, String nombre, String marca, String modelo, int anioFabricacion, String descripcion, double precioAlquiler) {
+    public ProductoDto(Long id, String nombre, String marca, String modelo, int anioFabricacion, String descripcion, double precioAlquiler, Set<CategoriaDto> categorias) {
         this.id = id;
         this.nombre = nombre;
         this.marca = marca;
@@ -24,6 +26,7 @@ public class ProductoDto {
         this.anioFabricacion = anioFabricacion;
         this.descripcion = descripcion;
         this.precioAlquiler = precioAlquiler;
+        this.categorias = categorias;
     }
 
     public Long getId() {
@@ -79,5 +82,11 @@ public class ProductoDto {
         this.precioAlquiler = precioAlquiler;
     }
 
+    public Set<CategoriaDto> getCategorias() {
+        return categorias;
+    }
 
+    public void setCategorias(Set<CategoriaDto> categorias) {
+        this.categorias = categorias;
+    }
 }

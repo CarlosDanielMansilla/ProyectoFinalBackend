@@ -69,10 +69,14 @@ public class SecurityConfig {
                 .csrf(config -> config.disable())
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/motorhome").permitAll();
+                    auth.requestMatchers("/categoria").permitAll();
                     auth.requestMatchers("/imagenes/buscarPorProducto").permitAll();
                     auth.requestMatchers("/usuarios/createUser").permitAll();
                     auth.requestMatchers("/motorhome/registrar").permitAll();
-                    auth.requestMatchers("/internos/eliminar/{id}").hasRole("ADMIN");
+                    auth.requestMatchers("/motorhome/eliminar/{id}").permitAll();
+                    auth.requestMatchers("/imagenes/guardar").permitAll();
+                    auth.requestMatchers("/categoria/registrar").permitAll();
+                    //auth.requestMatchers("/internos/eliminar/{id}").hasRole("ADMIN");
                     auth.anyRequest().authenticated();
                 })
                 .sessionManagement(session -> {

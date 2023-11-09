@@ -14,7 +14,7 @@
 //   }, []);
 
 //   return (
-    
+
 //     <div className="listar-productos-container">
 //       <h1 className="listar-productos-title">MotorHome</h1>
 //       <h1>MotorHome</h1>
@@ -27,32 +27,37 @@
 //       <img src={"/images/" + motorhome.file} alt="" width={200} />
 //     </div>
 
-
-
-
 //   );
 // };
 
 // export default ListarProductos;
 
-
 import { useEffect, useState } from "react";
 import axios from "axios";
-import './ListarProductos.css';
+import "./ListarProductos.css";
 
 const ListarProductos = () => {
   const [productos, setProductos] = useState([]);
+  const [eliminado, setEliminado] = useState(false);
 
   useEffect(() => {
     axios
       .get("http://localhost:8080/motorhome")
       .then((res) => {
         setProductos(res.data);
+        setEliminado(false);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [eliminado]);
 
   const handleEliminarProducto = (id) => {
+    axios
+      .delete("http://localhost:8080/motorhome/eliminar/" + id)
+      .then(() => {
+        setEliminado(true);
+        console.log("eliminado correctamente");
+      })
+      .catch((err) => console.log(err));
     // Aquí puedes implementar la lógica para eliminar un producto
     // Puedes usar una función o modal de confirmación antes de eliminar.
     console.log(`Eliminar producto con ID: ${id}`);
@@ -62,37 +67,37 @@ const ListarProductos = () => {
     <div className="listar-productos-container">
       {/* <div className="row col-md-7 table-responsive"> */}
       <h1>Lista de Productos</h1>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Marca</th>
-              <th>Modelo</th>
-              <th>Año de Fabricación</th>
-              <th>Descripción</th>
-              <th>Acciones</th>
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Año de Fabricación</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {productos.map((producto) => (
+            <tr key={producto.id}>
+              <td>{producto.id}</td>
+              <td>{producto.marca}</td>
+              <td>{producto.modelo}</td>
+              <td>{producto.anioFabricacion}</td>
+              <td>{producto.descripcion}</td>
+              <td>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => handleEliminarProducto(producto.id)}
+                >
+                  Eliminar
+                </button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {productos.map((producto) => (
-              <tr key={producto.id}>
-                <td>{producto.id}</td>
-                <td>{producto.marca}</td>
-                <td>{producto.modelo}</td>
-                <td>{producto.anioFabricacion}</td>
-                <td>{producto.descripcion}</td>
-                <td>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => handleEliminarProducto(producto.id)}
-                  >
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          ))}
+        </tbody>
+      </table>
       {/* </div> */}
     </div>
   );

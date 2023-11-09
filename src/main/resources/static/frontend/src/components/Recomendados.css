@@ -1,17 +1,22 @@
-.Recomendados{
-    margin: 5%;
+.Recomendados {
+  margin: 5%;
 }
 
-.Recomendados h5{
-  color:#001D6C;
+.Recomendados h5 {
+  color: #001d6c;
   text-align: center;
 }
 
-h2{
-    text-align: center;
-    margin-bottom: 2.5%;
+@media only screen and (min-width: 600px) {
+  .Recomendados {
+    margin: 2%;
+  }
 }
 
-.Recomendados .col{
+h2 {
+  text-align: center;
+  margin-bottom: 2.5%;
+}
+.Recomendados .col {
   max-width: 550px;
 }

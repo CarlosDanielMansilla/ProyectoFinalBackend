@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,6 +35,7 @@ public class ProductoController {
     public List<ProductoDto> listarTodos(){
         return IProductoService.listarMotorHome();
     }
+
     @PostMapping("/registrar")
     public ResponseEntity<ProductoDto> registrar(@RequestBody Producto producto) {
         ResponseEntity<ProductoDto> respuesta;
@@ -95,5 +97,12 @@ public class ProductoController {
         if(productoDto != null) respuesta = new ResponseEntity<>(productoDto, null, HttpStatus.OK);
         else respuesta = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         return respuesta;
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> eliminar(@PathVariable Long id){
+        IProductoService.eliminarMotorHome(id);
+        return ResponseEntity.ok("MotorHome Eliminado");
     }
 }
